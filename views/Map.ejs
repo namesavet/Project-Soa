@@ -46,28 +46,32 @@
         </div>
     </nav>
     <div class="container mt-5">
+
+
+        <div class="text-center h1 font-weight-bold">
+            World Situation
+        </div>
         <div class="row text-center">
-            <div class="container">
-
-                <h1>World Situation</h1>
-            </div>
-            <hr>
-
-
             <div class="col-4">
-                Confirmed
-                <br>
-                <%= Total.worldConfirmed%>
+                <div class="alert alert-dark" role="alert">
+                    Confirmed
+                    <hr>
+                    <%= Total.worldConfirmed%>
+                </div>
             </div>
             <div class="col-4">
-                Recovered
-                <br>
-                <%= Total.worldRecovered%>
+                <div class="alert alert-success" role="alert">
+                    Recovered
+                    <hr>
+                    <%= Total.worldRecovered%>
+                </div>
             </div>
             <div class="col-4">
-                Deaths
-                <br>
-                <%= Total.worldDeaths%>
+                <div class="alert alert-danger" role="alert">
+                    Deaths
+                    <hr>
+                    <%= Total.worldDeaths%>
+                </div>
             </div>
         </div>
         <hr>
@@ -80,8 +84,8 @@
 
     <div class="container mt-3">
         <div id="mapid" style="height: 500px;">
-
         </div>
+        <hr>
     </div>
 
 
