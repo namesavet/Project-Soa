@@ -20,6 +20,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 
 <body>
@@ -43,26 +44,38 @@
             </ul>
         </div>
     </nav>
-<div class="container mt-5">
-    <div class="row">
-    <div class="col-4">
-       world Confirmed
-       <br>
-        <%= Total.worldConfirmed%>
+    <div class="container mt-5">
+        <div class="row text-center">
+            <div class="container">
+
+                <h1>World Situation</h1>
+            </div>
+            <hr>
+
+
+            <div class="col-4">
+                Confirmed
+                <br>
+                <%= Total.worldConfirmed%>
+            </div>
+            <div class="col-4">
+                Recovered
+                <br>
+                <%= Total.worldRecovered%>
+            </div>
+            <div class="col-4">
+                Deaths
+                <br>
+                <%= Total.worldDeaths%>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <canvas id="horizontalBar" style="width: 50%;"></canvas>
+        </div>
+        <hr>
     </div>
-    <div class="col-4">
-       world Recovered
-       <br>
-        <%= Total.worldRecovered%>
-    </div>
-    <div class="col-4">
-        World Deaths
-        <br>
-        <%= Total.worldDeaths%>
-    </div>
-</div>
-</div>
-    
+
 
     <div class="container mt-3">
         <div id="mapid" style="height: 500px;">
@@ -83,7 +96,38 @@
     <script>
         getMaps(`<%- JSON.stringify(Latitude) %>`);
     </script>
-  
+
+    <script>
+
+        var total_worldConfirmed = '<%= Total.worldConfirmed%>';
+        var total_worldRecovered = '<%= Total.worldRecovered%>';
+        var total_worldDeaths = '<%= Total.worldDeaths%>';
+
+        new Chart(document.getElementById("horizontalBar"), {
+            "type": "horizontalBar",
+            "data": {
+                "labels": ["Confirmed", "Recovered", "Deaths"],
+                "datasets": [{
+                    "label": ["World Situation"],
+                    "data": [total_worldConfirmed, total_worldRecovered, total_worldDeaths],
+                    "fill": false,
+                    "backgroundColor": ["#4D5360", "#46BFBD", "#F7464A"],
+                    "borderColor": ["#4D5360", "#46BFBD", "#F7464A"],
+                    "borderWidth": 1
+                }]
+            },
+            "options": {
+                "scales": {
+                    "xAxes": [{
+                        "ticks": {
+                            "beginAtZero": true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
 </body>
 
 </html>
