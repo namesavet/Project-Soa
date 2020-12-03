@@ -19,6 +19,8 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 
 <body>
@@ -48,19 +50,40 @@
         </div>
         <div class="row">
             <div class="col-4">
-                Confirmed <%= Status.confirmed %>
+
+                <div class="alert alert-dark" role="alert">
+                    <p>Confirmed</p>
+                    <hr>
+                    <%= Status.confirmed %>
+                </div>
+
+
             </div>
             <div class="col-4">
-                Recovered <%= Status.recovered %>
+
+                <div class="alert alert-success" role="alert">
+                    <p>Recovered</p>
+                    <hr>
+                    <%= Status.recovered %>
+                </div>
+
             </div>
             <div class="col-4">
-                Deaths <%= Status.deaths %>
+                <div class="alert alert-danger" role="alert">
+                    <p>Deaths</p>
+                    <hr>
+                    <%= Status.deaths %>
+                </div>
             </div>
         </div>
-       
+
+        <div class="jumbotron">
+            <canvas id="pieChart" style="width: 80%;"></canvas>
+        </div>
+
     </div>
 
-  
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -69,8 +92,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    
- 
+    <!-- <script src="/javascripts/Country.js"></script> -->
+    <script>
+        //pie
+        var ctxP = document.getElementById("pieChart").getContext('2d');
+        var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+                labels: ["Confirmed", "Recovered", "Deaths"],
+                datasets: [{
+                    data: ['<%= Status.confirmed %>', '<%= Status.recovered %>', '<%= Status.deaths %>'],
+                    backgroundColor: ["#4D5360", "#46BFBD", "#F7464A"],
+                    hoverBackgroundColor: ["#616774", "#5AD3D1", "#FF5A5E"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+
 </body>
 
 </html>
