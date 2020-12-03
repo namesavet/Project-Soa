@@ -127,7 +127,7 @@ const getTotalStatusByState = async (State) => {
 
 
 const getMaps = async () => {
-    const sql = 'select lat , long , "Province/State" as State , "Country/Region" as Country from covid19_death_csv';
+    const sql = 'select lat , long , "Province/State" as State , "Country/Region" as Country ,covid19_confirmed_csv."3/23/20" as Confirmed from covid19_confirmed_csv';
     try {
         const data = await pool.query(sql);
         return data;

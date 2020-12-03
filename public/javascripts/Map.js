@@ -21,8 +21,8 @@ const getMaps = (data) => {
             radius: 100000
             
         }).addTo(map);
-        circle.bindPopup(`${parseLatitude[key].country}`);
-        
+        circle.bindPopup(`${parseLatitude[key].country}  Confirmed:${parseLatitude[key].confirmed}`);
+         
       
     
     }
