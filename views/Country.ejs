@@ -48,7 +48,7 @@
         <div class="text-center h1 font-weight-bold">
             <%= nameCountry %>
         </div>
-       
+
         <div class="row text-center">
             <div class="col-4">
                 <div class="alert alert-dark" role="alert">
@@ -75,7 +75,9 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-3">
+            <div class="col-6">
+                <div id="mapcountry" style="height: 500px;">
+                </div>
             </div>
             <div class="col-6">
 
@@ -88,8 +90,10 @@
             </div>
 
         </div>
+        
 
-<hr>
+        <hr>
+        
     </div>
 
 
@@ -101,6 +105,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script src="/javascripts/Map.js"></script>
     <!-- <script src="/javascripts/Country.js"></script> -->
     <script>
         //pie
@@ -120,7 +125,10 @@
             }
         });
     </script>
+    <script>
 
+        getMapscountry(`<%- JSON.stringify(Status) %>`);
+    </script>
 </body>
 
 </html>
