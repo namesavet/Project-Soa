@@ -30,6 +30,7 @@ const getAllConfirmed = async () => {
     }
 }
 
+
 const getAllRecovered = async () => {
     const sql = 'select "3/23/20" as allrecovered from covid19_recovered_csv';
     try {
@@ -42,7 +43,7 @@ const getAllRecovered = async () => {
 }
 
 const getAllDeaths = async () => {
-    const sql = 'select "3/23/20" as alldeaths from covid19_death_csv';
+    const sql = 'select "3/23/20" as worldDeaths from covid19_death_csv';
     try {
         const data = await pool.query(sql);
         return data;
@@ -51,6 +52,42 @@ const getAllDeaths = async () => {
         return null;
     }
 }
+
+const getworldConfirmed = async () => {
+    const sql = 'select sum("3/23/20") as worldConfirmed from covid19_confirmed_csv';
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+const getworldRecovered  = async () => {
+    const sql = 'select sum("3/23/20") as worldRecovered from covid19_recovered_csv';
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+const getworldDeaths = async () => {
+    const sql = 'select sum("3/23/20") as worldDeaths from covid19_death_csv';
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
+
+
+
+
 
 const getTotalStatusByCountry = async (Country) => {
     const sql = `select covid19_confirmed_csv."3/23/20" as Confirmed , 
@@ -90,7 +127,7 @@ const getTotalStatusByState = async (State) => {
 
 
 const getMaps = async () => {
-    const sql = 'select lat , long from covid19_death_csv';
+    const sql = 'select lat , long , "Province/State" as State , "Country/Region" as Country from covid19_death_csv';
     try {
         const data = await pool.query(sql);
         return data;
@@ -108,4 +145,7 @@ module.exports = {
     getAllRecovered,
     getAllDeaths,
     getMaps,
+    getworldConfirmed,
+    getworldRecovered,
+    getworldDeaths,
 }

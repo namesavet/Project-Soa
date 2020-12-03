@@ -41,8 +41,18 @@ router.get('/Country/:State/:CountryTarget', async function (req, res, next) {
 });
 
 router.get('/Map', async function (req, res, next) {
+  const worldDeaths = await db.getworldDeaths();
+  const worldRecovered = await db.getworldRecovered();
+  const worldConfirmed = await db.getworldConfirmed();
   const getMaps = await db.getMaps();
-  res.render('Map',{ Latitude : getMaps.rows});
+
+  const worldTotal = {
+    worldDeaths:worldDeaths.rows[0].worlddeaths,
+    worldRecovered:worldRecovered.rows[0].worldrecovered,
+    worldConfirmed:worldConfirmed.rows[0].worldconfirmed,
+  }
+  console.log(worldTotal)
+  res.render('Map',{ Latitude : getMaps.rows, Total : worldTotal});
 });
 
 module.exports = router;

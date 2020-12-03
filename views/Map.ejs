@@ -43,6 +43,27 @@
             </ul>
         </div>
     </nav>
+<div class="container mt-5">
+    <div class="row">
+    <div class="col-4">
+       world Confirmed
+       <br>
+        <%= Total.worldConfirmed%>
+    </div>
+    <div class="col-4">
+       world Recovered
+       <br>
+        <%= Total.worldRecovered%>
+    </div>
+    <div class="col-4">
+        World Deaths
+        <br>
+        <%= Total.worldDeaths%>
+    </div>
+</div>
+</div>
+    
+
     <div class="container mt-3">
         <div id="mapid" style="height: 500px;">
 
@@ -60,7 +81,7 @@
         crossorigin="anonymous"></script>
     <script src="/javascripts/Map.js"></script>
     <script>
-        getMaps('<%- JSON.stringify(Latitude) %>');
+        getMaps(`<%- JSON.stringify(Latitude) %>`);
     </script>
   
 </body>
