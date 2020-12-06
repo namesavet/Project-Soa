@@ -84,16 +84,11 @@ const getworldDeaths = async () => {
     }
 }
 
-
-
-
-
-
 const getTotalStatusByCountry = async (Country) => {
     const sql = `select covid19_confirmed_csv."Country/Region" as Country,
     covid19_confirmed_csv.lat,
     covid19_confirmed_csv.long,
-     covid19_confirmed_csv."3/23/20" as Confirmed , 
+    covid19_confirmed_csv."3/23/20" as Confirmed , 
     covid19_death_csv."3/23/20" as Deaths ,
     covid19_recovered_csv."3/23/20" as Recovered
     from covid19_confirmed_csv , covid19_death_csv , covid19_recovered_csv
@@ -129,6 +124,10 @@ const getTotalStatusByState = async (State) => {
     }
 }
 
+
+
+
+
  
 
 
@@ -154,4 +153,5 @@ module.exports = {
     getworldConfirmed,
     getworldRecovered,
     getworldDeaths,
+ 
 }
