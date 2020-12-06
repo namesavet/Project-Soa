@@ -28,7 +28,7 @@ router.get('/', async function (req, res, next) {
 router.get('/Country/:State/:CountryTarget', async function (req, res, next) {
   const Country = req.params.CountryTarget
   const State = req.params.State
-  
+
   var StatusCountry, name;
   if (State != "null") {
     name = State;
@@ -37,7 +37,11 @@ router.get('/Country/:State/:CountryTarget', async function (req, res, next) {
     name = Country;
     StatusCountry = await db.getTotalStatusByCountry(Country);
   }
+
   res.render('Country', { nameCountry: name, Status: StatusCountry.rows[0] });
+
+
+
 });
 
 router.get('/Map', async function (req, res, next) {
@@ -47,12 +51,12 @@ router.get('/Map', async function (req, res, next) {
   const getMaps = await db.getMaps();
 
   const worldTotal = {
-    worldDeaths:worldDeaths.rows[0].worlddeaths,
-    worldRecovered:worldRecovered.rows[0].worldrecovered,
-    worldConfirmed:worldConfirmed.rows[0].worldconfirmed,
+    worldDeaths: worldDeaths.rows[0].worlddeaths,
+    worldRecovered: worldRecovered.rows[0].worldrecovered,
+    worldConfirmed: worldConfirmed.rows[0].worldconfirmed,
   }
   console.log(worldTotal)
-  res.render('Map',{ Latitude : getMaps.rows, Total : worldTotal});
+  res.render('Map', { Latitude: getMaps.rows, Total: worldTotal });
 });
 
 module.exports = router;
